@@ -140,6 +140,7 @@ if __name__ == "__main__":
     print(ll.insert(1, 7), "добавили элемент 7 на индекс 1")
     print(ll.__getitem__(1), "достаем элемент под индексом 1")
     print(ll.__len__(), "возвращаем длину списка")
+    #print(repr(ll))
     #ll.step_by_step_on_nodes(3)
     #print(ll.__delitem__(2), "удаляем элемент по индексом 2")
 
