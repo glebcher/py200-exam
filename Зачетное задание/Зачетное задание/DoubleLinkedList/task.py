@@ -52,13 +52,13 @@ class LinkedList(MutableSequence):
             self.append(item)
         else:
             current_node = 0
-            while current.next is not None:
+            while current is not None:
 
                 if (index-1) == current_node:
-                    current = new_node.next
+                    current = new_node
 
                 if index == current_node:
-                    new_node = current.next
+                    new_node = current
                 current = current.next
 
                 current_node += 1
@@ -135,9 +135,10 @@ if __name__ == "__main__":
     print(ll)
 
     print(ll.append(15), "добавили 15 в с конец списка")
-    print(ll)
+    #print(ll)
     print(ll.__getitem__(3), "достаем элемент под индексом 3")
-    print(ll.insert(1, 7), "добавили элемент 7 на индекс 1")
+    #print(ll.insert(1, 7), "добавили элемент 7 на индекс 1")
+    print(ll)
     print(ll.__getitem__(1), "достаем элемент под индексом 1")
     print(ll.__len__(), "возвращаем длину списка")
     #print(repr(ll))
