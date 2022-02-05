@@ -16,8 +16,6 @@ class Node:
     def is_valid(node: Any) -> None:
         if not isinstance(node, (type(None), Node)):
             raise TypeError
-        elif Node is None:
-            raise ValueError
 
     @property
     def next(self):

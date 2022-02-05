@@ -55,10 +55,10 @@ class LinkedList(MutableSequence):
             while current.next is not None:
 
                 if (index-1) == current_node:
-                    current.setNext(new_node)
+                    current = new_node.next
 
                 if index == current_node:
-                    new_node.setNext(current.next())
+                    new_node = current.next
                 current = current.next
 
                 current_node += 1
