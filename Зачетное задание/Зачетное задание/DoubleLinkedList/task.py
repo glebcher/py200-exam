@@ -3,15 +3,8 @@ from typing import Any, Iterable, Optional
 from node import Node, DoubleLinkedNode
 
 
-#class Abstract:
-   # ...
-
-    #@MutableSequence
-    #def __init__(self, data: Iterable = None):
-      #  ...
 class LinkedList(MutableSequence):
     def __init__(self, data: Iterable = None):
-       # super().__init__()
         self.len = 0
         self.head: Optional[Node] = None
         self.tail = self.head
@@ -140,7 +133,6 @@ if __name__ == "__main__":
     list2 = ([3, 5, 15])
     ll = LinkedList(list_)
     print(ll)
-
 
     print(ll.append(15), "добавили 15 в с конец списка")
     print(ll)
