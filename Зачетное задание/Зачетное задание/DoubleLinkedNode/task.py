@@ -2,10 +2,9 @@ from typing import Any, Optional
 
 
 class Node:
-    def __init__(self, value: Any, prev: Optional["Node"] = None,  next_: Optional["Node"] = None):
+    def __init__(self, value: Any,  next_: Optional["Node"] = None):
         self.value = value
         self.next = next_
-        self.prev = prev
 
     def __repr__(self) -> str:
         return f"Node({self.value}, {None})" if self.next is None else f"Node({self.value}, Node({self.next}))"
@@ -17,7 +16,7 @@ class Node:
     def is_valid(node: Any) -> None:
         if not isinstance(node, (type(None), Node)):
             raise TypeError
-        elif Node is None:
+        elif node is None:
             raise ValueError
 
     @property
@@ -32,8 +31,8 @@ class Node:
 
 class DoubleLinkedNode(Node):
     def __init__(self, value: Any, prev: Optional["Node"] = None,  next_: Optional["Node"] = None):
-        super().__init__(value=value, next_=next_, prev=prev)
-
+        super().__init__(value=value, next_=next_)
+        self.prev = prev
     @property
     def prev(self):
         return self.prev() if self._prev else None
@@ -57,8 +56,8 @@ if __name__ == "__main__":
     ln = Node([1, 2, 3])
     dln = DoubleLinkedNode([1, 2, 3])
     print(ln)
-    print(ln.__repr__())
-    print(ln.__str__())
-    print(dln.__repr__())
+    print(ln.__repr__)
+    print(ln.__str__)
+    print(dln.__repr__)
     print(dln.next)
     print(dln.prev)

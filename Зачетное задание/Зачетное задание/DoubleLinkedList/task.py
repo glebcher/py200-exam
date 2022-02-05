@@ -1,6 +1,6 @@
 from collections.abc import MutableSequence
 from typing import Any, Iterable, Optional
-from node import Node
+from node import Node, DoubleLinkedNode
 
 
 #class Abstract:
@@ -9,7 +9,7 @@ from node import Node
     #@MutableSequence
     #def __init__(self, data: Iterable = None):
       #  ...
-class LinkedList:
+class LinkedList(MutableSequence):
     def __init__(self, data: Iterable = None):
        # super().__init__()
         self.len = 0
@@ -51,10 +51,10 @@ class LinkedList:
 
     def insert(self, index, item):
 
-        current = self.head
+        current = self.step_by_step_on_nodes(index)
         new_node = Node(item, None)
         if index == 0:
-            self.__setitem__(index, item)
+            self.index = item
         elif index == self.len:
             self.append(item)
         else:
@@ -84,12 +84,6 @@ class LinkedList:
         return self.len
 
     def __delitem__(self, index: int):
-        if not isinstance(index, int):
-            raise TypeError()
-
-        if not 0 <= index < self.len:
-            raise IndexError()
-
         if index == 0:
             self.head = self.head.next
         elif index == self.len - 1:
@@ -117,7 +111,7 @@ class DoubleLinkedList(LinkedList):
     def __init__(self, data: Iterable = None):
         super(LinkedList, self).__init__(data)
         self.len = 0
-        self.head: Optional[Node] = None
+        self.head: Optional[DoubleLinkedNode] = None
         self.tail = self.head
 
         if data is not None:
@@ -125,12 +119,12 @@ class DoubleLinkedList(LinkedList):
                 self.append(value)
 
     @staticmethod
-    def linked_nodes(left_node: Node, right_node: Optional[Node] = None) -> None:
+    def linked_nodes(left_node: DoubleLinkedNode, right_node: Optional[DoubleLinkedNode] = None) -> None:
         left_node.next = right_node
         right_node.prev = left_node
 
     def append(self, value: Any):
-        append_node = Node(value)
+        append_node = DoubleLinkedNode(value)
 
         if self.head is None:
             self.head = self.tail = append_node
@@ -143,22 +137,24 @@ class DoubleLinkedList(LinkedList):
 
 if __name__ == "__main__":
     list_ = ([1, 2, 3])
-
+    list2 = ([3, 5, 15])
     ll = LinkedList(list_)
     print(ll)
 
-    # print(ll.append(15), "добавили 15 в с конец списка")
-    # print(ll.__getitem__(3), "достаем элемент под индексом 3")
-    # print(ll.insert(1, 7), "добавили элемент 7 на индекс 1")
-    # print(ll.__getitem__(1), "достаем элемент под индексом 1")
-    # print(ll.__len__(), "возвращаем длину списка")
-    # ll.step_by_step_on_nodes(3)
-    # print(ll.__delitem__(2), "удаляем элемент по индексом 2")
 
-    ll.remove(1)
-    print("удаляем элемент под индексом 1")
+    print(ll.append(15), "добавили 15 в с конец списка")
+    print(ll)
+    print(ll.__getitem__(3), "достаем элемент под индексом 3")
     print(ll.insert(1, 7), "добавили элемент 7 на индекс 1")
-    print(ll, "возвращаем список")
+    print(ll.__getitem__(1), "достаем элемент под индексом 1")
+    print(ll.__len__(), "возвращаем длину списка")
+    #ll.step_by_step_on_nodes(3)
+    #print(ll.__delitem__(2), "удаляем элемент по индексом 2")
+
+
+
+    # print(ll.insert(1, 7), "добавили элемент 7 на индекс 1")
+    # print(ll, "возвращаем список")
     #print(ll.__getitem__(1), "достаем элемент под индексом 1")
     #print(ll.__len__(), "возвращаем длину списка после удаления")
     # print(ll)
