@@ -45,23 +45,14 @@ class LinkedList(MutableSequence):
     def insert(self, index, item):
 
         current = self.step_by_step_on_nodes(index)
+        previous = self.step_by_step_on_nodes(index - 1)
         new_node = Node(item, None)
         if index == 0:
-            self.index = item
+            self.head = new_node
         elif index == self.len:
             self.append(item)
         else:
-            current_node = 0
-            while current is not None:
-
-                if (index-1) == current_node:
-                    current = new_node
-
-                if index == current_node:
-                    new_node = current
-                current = current.next
-
-                current_node += 1
+            previous.next = current
             self.len += 1
 
     def to_list(self) -> list:
@@ -137,7 +128,7 @@ if __name__ == "__main__":
     print(ll.append(15), "добавили 15 в с конец списка")
     #print(ll)
     print(ll.__getitem__(3), "достаем элемент под индексом 3")
-    #print(ll.insert(1, 7), "добавили элемент 7 на индекс 1")
+    print(ll.insert(1, 7), "добавили элемент 7 на индекс 1")
     print(ll)
     print(ll.__getitem__(1), "достаем элемент под индексом 1")
     print(ll.__len__(), "возвращаем длину списка")
