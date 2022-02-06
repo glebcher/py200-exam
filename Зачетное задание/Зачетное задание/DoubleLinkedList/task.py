@@ -52,7 +52,7 @@ class LinkedList(MutableSequence):
         elif index == self.len:
             self.append(item)
         else:
-            previous.next = current
+            previous.next = new_node
             self.len += 1
 
     def to_list(self) -> list:
