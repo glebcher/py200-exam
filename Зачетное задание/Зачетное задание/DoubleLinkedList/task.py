@@ -42,11 +42,12 @@ class LinkedList(MutableSequence):
 
         self.len += 1
 
-    def insert(self, index, item):
+    def insert(self, index, item: Any):
 
-        current = self.step_by_step_on_nodes(index)
+        #current = self.step_by_step_on_nodes(index)
         previous = self.step_by_step_on_nodes(index - 1)
-        new_node = Node(item, None)
+        new_node = Node(item)
+        not_last_node = Node(item, self.head.next)
         if index == 0:
             self.head = new_node
         elif index == self.len:
@@ -125,16 +126,16 @@ if __name__ == "__main__":
     ll = LinkedList(list_)
     print(ll)
 
-    print(ll.append(15), "добавили 15 в с конец списка")
-    #print(ll)
-    print(ll.__getitem__(3), "достаем элемент под индексом 3")
-    print(ll.insert(1, 7), "добавили элемент 7 на индекс 1")
+    print(ll.append(15), "добавили 15 в конец списка")
     print(ll)
-    print(ll.__getitem__(1), "достаем элемент под индексом 1")
-    print(ll.__len__(), "возвращаем длину списка")
+    print(ll[3], "достаем элемент под индексом 3")
+    #print(ll.insert(1, 7), "добавили элемент 7 на индекс 1")
+    print(ll)
+    print(ll[1], "достаем элемент под индексом 1")
+    print(len(ll), "возвращаем длину списка")
     #print(repr(ll))
     #ll.step_by_step_on_nodes(3)
-    #print(ll.__delitem__(2), "удаляем элемент по индексом 2")
+
 
 
 

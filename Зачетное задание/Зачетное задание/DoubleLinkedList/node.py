@@ -26,14 +26,12 @@ class Node:
         self.is_valid(next_)
         self._next = next_
 
-    def setNext(self, next_node):
-        self.next = next_node
-
 
 class DoubleLinkedNode(Node):
     def __init__(self, value: Any, prev: Optional["Node"] = None,  next_: Optional["Node"] = None):
         super().__init__(value=value, next_=next_)
         self.prev = prev
+
     @property
     def prev(self):
         return self.prev() if self._prev else None

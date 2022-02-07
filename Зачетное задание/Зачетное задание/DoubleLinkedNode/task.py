@@ -16,8 +16,6 @@ class Node:
     def is_valid(node: Any) -> None:
         if not isinstance(node, (type(None), Node)):
             raise TypeError
-        elif node is None:
-            raise ValueError
 
     @property
     def next(self):
@@ -33,6 +31,7 @@ class DoubleLinkedNode(Node):
     def __init__(self, value: Any, prev: Optional["Node"] = None,  next_: Optional["Node"] = None):
         super().__init__(value=value, next_=next_)
         self.prev = prev
+
     @property
     def prev(self):
         return self.prev() if self._prev else None
