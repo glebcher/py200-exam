@@ -42,19 +42,43 @@ class LinkedList(MutableSequence):
 
         self.len += 1
 
-    def insert(self, index, item: Any):
-
-        #current = self.step_by_step_on_nodes(index)
-        previous = self.step_by_step_on_nodes(index - 1)
-        new_node = Node(item)
-        not_last_node = Node(item, self.head.next)
+    def insert(self, index, value: Any) -> Node:
+        head = self
         if index == 0:
-            self.head = new_node
-        elif index == self.len:
-            self.append(item)
+            new_node = Node(value)
+            new_node.next = self.head
+            head = new_node
         else:
-            previous.next = new_node
-            self.len += 1
+            while index != 0:
+                index -= 1
+
+                if index == 0:
+                    new_node = Node(value)
+                    new_node.next = self.head.next
+                    self.head.next = new_node
+                    break
+
+                self.head = self.head.next
+                if self.head is None:
+                    break
+
+            if index != 0:
+                print("Индекс вне диапазона")
+
+        self.len += 1
+        return head
+
+      # #current = self.step_by_step_on_nodes(index)
+        # previous = self.step_by_step_on_nodes(index - 1)
+        # new_node = Node(item)
+        # not_last_node = Node(item, self.head.next)
+        # if index == 0:
+        #     self.head = new_node
+        # elif index == self.len:
+        #     self.append(item)
+        # else:
+        #     previous.next = new_node
+        #     self.len += 1
 
     def to_list(self) -> list:
         return [linked_list_value for linked_list_value in self]
@@ -74,6 +98,7 @@ class LinkedList(MutableSequence):
         elif index == self.len - 1:
             tail = self.step_by_step_on_nodes(index - 1)
             tail.next = None
+
         else:
             prev_node = self.step_by_step_on_nodes(index - 1)
             del_node = prev_node.next
@@ -87,7 +112,7 @@ class LinkedList(MutableSequence):
         node = self.step_by_step_on_nodes(index)
         return node.value
 
-    def __setitem__(self, index: int, value: Any) -> None:
+    def __setitem__(self, index: int, value: Any):
         node = self.step_by_step_on_nodes(index)
         node.value = value
 
@@ -127,12 +152,16 @@ if __name__ == "__main__":
     print(ll)
 
     print(ll.append(15), "добавили 15 в конец списка")
+    print(ll.append(15), "добавили 15 в конец списка")
+    print(ll.append(15), "добавили 15 в конец списка")
     print(ll)
     print(ll[3], "достаем элемент под индексом 3")
-    #print(ll.insert(1, 7), "добавили элемент 7 на индекс 1")
-    print(ll)
-    print(ll[1], "достаем элемент под индексом 1")
-    print(len(ll), "возвращаем длину списка")
+    print(ll.insert(1, 7), "добавили элемент 7 на индекс 1")
+    # print(ll.insert(3, 8), "добавили элемент 8 на индекс 3")
+    # print(ll.insert(2, 9), "добавили элемент 9 на индекс 2")
+    # print(ll)
+    # print(ll[1], "достаем элемент под индексом 1")
+    # print(len(ll), "возвращаем длину списка")
     #print(repr(ll))
     #ll.step_by_step_on_nodes(3)
 
